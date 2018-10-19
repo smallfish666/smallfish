@@ -210,7 +210,71 @@ const usersModel = {
             }
         })
 
-    }
+    },
+
+    /**
+   * 获取用户列表
+   * @param {Object} data 页码信息与每页显示条数信息
+   * @param {Function} cb 回调函数
+   */
+  getUserList(data, cb) {
+    MongoClient.connect(url, function(err, client) {
+      if (err) {
+        cb({code: -100, msg: '链接数据库失败'});
+      } else {
+        var db = client.db('smallfish');
+
+        var limitNum = parseInt(data.pageSize);
+        var skipNum = data.page * data.pageSize - data.pageSize;
+
+        async.parallel([
+          function (callback) {
+            // 查询所有记录
+            db.collection('users').find().count(function(err, num) {
+              if (err) {
+                callback({code: -101, msg: '查询数据库失败'});
+              } else {
+                callback(null, num);
+              }
+            })
+          },
+
+          function (callback) {
+            // 查询分页的数据
+            db.collection('users').find().limit(limitNum).skip(skipNum).toArray(function(err, data) {
+              if (err) {
+                callback({code: -101, msg: '查询数据库失败'});
+              } else {
+                callback(null, data);
+              }
+            })
+          }
+        ], function(err, results) {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null, {
+              totalPage: Math.ceil(results[0] / data.pageSize),
+              userList: results[1],
+              page: data.page,
+            })
+          }
+
+          // 关闭连接
+          client.close();
+        })
+
+        // db.collection('users').find().limit(data.pageSize).skip(skipNum).toArray(function(err, data) {
+        //   if (err) {
+        //     cb({code: -101, msg: '查询数据库失败'});
+        //   } else {
+        //     cb(null, {})
+        //   }
+        // })
+      }
+    })
+  }
 }
+
 
 module.exports = usersModel;

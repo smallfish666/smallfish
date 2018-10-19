@@ -39,4 +39,21 @@ cookies   localstroage
 
  #首页
 
- 
+ #用户管理页面
+
+ 1.查询所有用户的数据
+
+ 2.分页功能
+   2.1页面需要传递参数（页码 page，每页显示条数 pageSize）
+
+   2.2后台需要返回的数据结构
+
+   {
+       userList: [{username: '', age: ''}, {}],
+       totalPage: '', //总页数
+       page: '', //当前的页码
+   }
+
+   2.3数据库查询怎么写：
+   pageSize  每页显示多少条数
+   .find().limit(pageSize).skip(page * pageSize - pageSize).toArray()
