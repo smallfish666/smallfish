@@ -3,7 +3,13 @@ var router = express.Router();
 
 //首页
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  //判断用户是否已经登录， 如果登录就返回首页， 否则返回  登录页面
+  if (req.cookies.username){
+    res.render('index',{ title: 'Express' });
+  }else{
+    //跳转到登录页面
+    res.redirect('/login.html');
+  }
 });
 
 //注册页面

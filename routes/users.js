@@ -59,6 +59,21 @@ router.post('/login', function(req, res){
     }else{
       //跳转到百度
       console.log('当前登录用户的信息是', data);
+
+
+      //写  cookie
+      res.cookie('username', data.username,{
+        maxAge: 1000 * 60 * 10000,   //单位是毫秒。
+      })
+
+      res.cookie('nickname', data.nickname, {
+        maxAge: 1000 * 60 * 10000,   //单位是毫秒。
+      })
+
+      res.cookie('isAdmin', data.isAdmin, {
+        maxAge: 1000 * 60 * 10000,   //单位是毫秒。
+      })
+
       res.redirect('/');
     }
   })
