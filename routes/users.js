@@ -89,5 +89,9 @@ router.get('/logout', function(req,res){
   res.clearCookie('isAdmin');
 
   res.redirect('/login.html');
+
+  // res.redirect(200,'/login.html');
+  // res.location('/login.html');
+  // res.end();
 })
 module.exports = router;

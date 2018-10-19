@@ -25,6 +25,7 @@ router.get('/register.html',function(req,res){
 
 //登录页面
 router.get('/login.html',function(req,res){
+  console.log('登录页面进来');
   res.render('login');
 });
 
