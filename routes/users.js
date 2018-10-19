@@ -49,4 +49,18 @@ router.post('/register',function(req,res){
   })
 
 });
+
+//登录处理
+router.post('/login', function(req, res){
+  //调用 userModel 里面的 login方法
+  usersModel.login(req.body, function(err, data){
+    if(err){
+      res.render('werror', err);
+    }else{
+      //跳转到百度
+      console.log('当前登录用户的信息是', data);
+      res.redirect('/');
+    }
+  })
+})
 module.exports = router;
