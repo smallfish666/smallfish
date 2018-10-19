@@ -41,7 +41,10 @@ router.post('/register',function(req,res){
       res.render('werror', err);
     }else{
       //注册成功
-      res.render('login');
+      //不应该渲染，而应该跳转
+      //res.render('login');
+
+      res.redirect('/login.html');
     }
   })
 
