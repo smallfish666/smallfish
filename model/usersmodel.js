@@ -7,6 +7,9 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017';
+
+const async = require('async');
+
 const usersModel = { 
     /**
      * 注册操作
@@ -38,69 +41,133 @@ const usersModel = {
                 is_admin: data.isAdmin
             };
 
-            console.log(saveDate);
+            //——————————————————————使用  async   的   串行无关联来写——————————————————————————————————————
 
-            //查询 users  表中是否存在  需要注册的用户
-            db.collection('users').find({username: saveDate.username}).count(function(err,num){
-                //如果 num 为0 就是没有注册， 否则已经注册了
-                if (err) {
-                    cb({ code: -101, msg: '查询用户是否已注册失败'});
-                    client.close();
-                } else if (num !==0) {
-                    console.log('用户已经注册过了');
-                    cb({ code: -102, msg: '用户已经注册过了'});
-                    client.close();
-                    
-                } else {
-                    console.log('用户没有注册，可以进行注册操作');
-                    //自增  _id
 
-                    db.collection('users').find().count(function(err,num){
+            async.series([
+                function (callback) {
+                    //查询是否已注册
+                    db.collection('users').find({username: saveDate.username}).count(function(err, num) {
                         if (err) {
-                            cb({ code: -101,msg: '查询用户记录条数失败'});
-                        } else {
-                            saveDate._id = num + 1;
+                            callback({ code: -101, msg: '查询是否已注册失败'});
 
-                            db.collection('users').insertOne(saveDate,function(err){
-                                if (err) {
-                                    cb({ code: -101,msg: '用户注册失败'});
-                                } else {
-                                    console.log('用户注册成功');
-                                    cb(null);
-                                }
-                                //结束数据库连接
-                                client.close();
-                            })
+
+                        } else if (num !==0) {
+                            console.log('用户已经注册过了');
+                            callback({ code: -102, msg: '用户已经注册过了'});
+                        } else {
+                            console.log('当前用户可以注册');
+                            callback(null);
                         }
                     })
+                },
+
+                function (callback) {
+                    //查询表的所有记录条数
+                    db.collection('users').find().count(function(err, num){
+                        if (err) {
+                            callback({ code: -101, msg: '查询表的所有记录条数失败'});
+                        } else {
+                            saveDate._id = num + 1;
+                            callback(null);
+                        }
+                    })
+
+                },
+
+                function (callback) {
+                    //写入数据库的操作
+                    db.collection('users').insertOne(saveDate, function(err){
+                        if(err){
+                            callback({ code: -101, msg: '写入数据库失败'});
+                        } else {
+                            callback(null);
+                        }
+                    })
+
                 }
+            ], function(err, results){
+                //不管上面3个异步操作是否都成功，都会写入到这个最终的回调里面
+                if (err) {
+                    console.log('上面的3个操作，可能出了问题', err);
+                    //还得告诉前端页面
+                    cb(err);
+                } else{
+                    cb(null);
+                }
+                client.close();
+
+            });
 
 
 
 
 
+            //--------------  万能的分割线   以下是回调地狱的写法-----------------------------------
 
+            // console.log(saveDate);
 
-
-                // if (num === 0) {
+            // //查询 users  表中是否存在  需要注册的用户
+            // db.collection('users').find({username: saveDate.username}).count(function(err,num){
+            //     //如果 num 为0 就是没有注册， 否则已经注册了
+            //     if (err) {
+            //         cb({ code: -101, msg: '查询用户是否已注册失败'});
+            //         client.close();
+            //     } else if (num !==0) {
+            //         console.log('用户已经注册过了');
+            //         cb({ code: -102, msg: '用户已经注册过了'});
+            //         client.close();
                     
-                //     db.collection('users').find().count(function(err, num){
-                //         if (err) throw err;
-                //         saveDate._id = num + 1;
-                //         console.log(saveDate);
+            //     } else {
+            //         console.log('用户没有注册，可以进行注册操作');
+            //         //自增  _id
+
+            //         db.collection('users').find().count(function(err,num){
+            //             if (err) {
+            //                 cb({ code: -101,msg: '查询用户记录条数失败'});
+            //             } else {
+            //                 saveDate._id = num + 1;
+
+            //                 db.collection('users').insertOne(saveDate,function(err){
+            //                     if (err) {
+            //                         cb({ code: -101,msg: '用户注册失败'});
+            //                     } else {
+            //                         console.log('用户注册成功');
+            //                         cb(null);
+            //                     }
+            //                     //结束数据库连接
+            //                     client.close();
+            //                 })
+            //             }
+            //         })
+            //     }
+
+
+
+
+
+
+
+
+            //     // if (num === 0) {
+                    
+            //     //     db.collection('users').find().count(function(err, num){
+            //     //         if (err) throw err;
+            //     //         saveDate._id = num + 1;
+            //     //         console.log(saveDate);
                     
         
-                //     db.collection('users').insertOne(saveDate,function(err){
-                //         if(err) throw err;
-                //         cb(null);
-                //         client.close();
-                //     })
-                // });
-                // } else{
-                //   cb('已经注册过了');
-                //   client.close();
-                // }
-            })
+            //     //     db.collection('users').insertOne(saveDate,function(err){
+            //     //         if(err) throw err;
+            //     //         cb(null);
+            //     //         client.close();
+            //     //     })
+            //     // });
+            //     // } else{
+            //     //   cb('已经注册过了');
+            //     //   client.close();
+            //     // }
+            // })
 
         })
     }
