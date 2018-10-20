@@ -7,7 +7,8 @@
   .index .header {
     height: 60px;
     line-height: 60px;
-    border-bottom: 1px solid #000;
+    background: rgb(155, 148, 148);
+    opacity: 0.8;
   }
   
   .index .container {
@@ -18,14 +19,14 @@
   .container .menu {
     width: 260px;
     height: 100%;
-    background: #5E90B0;
+    background: #E1E4D9;
     opacity: 0.8;
   }
   
   .container .main {
     flex: 1;
     height: 100%;
-    background: #5E90B0;
+    background: #E4E9E7;
     opacity: 0.8;
   }
   
@@ -46,10 +47,14 @@
     border-right: 1px solid #000;
   }
   
+  .menu ul{
+    margin-top: 50px;
+  }
+
   .menu .menu_item {
     height: 50px;
     line-height: 50px;
-    margin-left: 20px;
+    margin-left: 80px;
     font-size: 18px;
     
   }
@@ -79,7 +84,7 @@
     width: 80px;
     height: 50px;
     line-height: 50px;
-    background: #5E90B0;
+    background: rgb(21, 105, 156);
     border: none;
     margin: 5px 20px 5px 10px;
     
@@ -88,4 +93,48 @@
   .header .header_right button a{
     color: #000;
     font-size: 16px;
+  }
+
+  input{
+    outline: none;
+    border: none;
+  }
+
+  .main input{
+    width: 502px;
+    height: 40px;
+    margin-left: 352px;
+    margin-top: 20px;
+  }
+
+  .main button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #3498DB;
+  }
+
+  .main table{
+    text-align: center;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    margin-top: 50px;
+  }
+  .main table tr{
+    border: 1px solid #797979;
+  }
+
+  .main table td{
+    border: 1px solid #797979;
+  }
+
+  .main ul{
+    margin-right: 406px;
+    margin-top: 20px;
+    float: right;
+  }
+
+  .main ul li{
+    float: left;
   }
