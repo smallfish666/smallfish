@@ -57,3 +57,11 @@ cookies   localstroage
    2.3数据库查询怎么写：
    pageSize  每页显示多少条数
    .find().limit(pageSize).skip(page * pageSize - pageSize).toArray()
+
+
+
+   #搜索
+     var nickname = new RegExp(nickname)  ->  /zhansan/
+
+     db.find({nickname: nickname})
+
