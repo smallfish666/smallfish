@@ -47,3 +47,7 @@
     line-height: 50px;
   }
   
+
+  body {
+    background:url(/images/6.jpg) no-repeat center;
+  }
