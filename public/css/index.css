@@ -18,11 +18,15 @@
   .container .menu {
     width: 260px;
     height: 100%;
+    background: #5E90B0;
+    opacity: 0.8;
   }
   
   .container .main {
     flex: 1;
     height: 100%;
+    background: #5E90B0;
+    opacity: 0.8;
   }
   
   /* // ======== [头部样式] ======== */
@@ -45,9 +49,43 @@
   .menu .menu_item {
     height: 50px;
     line-height: 50px;
+    margin-left: 20px;
+    font-size: 18px;
+    
   }
   
-
+  .menu .menu_item a{
+    color: #000;
+  }
   body {
     background:url(/images/6.jpg) no-repeat center;
+  }
+
+  .header h2{
+    font-size: 25px;
+    font-weight: 400;
+    margin-left: 20px;
+  } 
+
+  a{
+    text-decoration: none;
+  }
+
+  .header .header_right p{
+    font-size: 20px;
+  }
+
+  .header .header_right button{
+    width: 80px;
+    height: 50px;
+    line-height: 50px;
+    background: #5E90B0;
+    border: none;
+    margin: 5px 20px 5px 10px;
+    
+  }
+
+  .header .header_right button a{
+    color: #000;
+    font-size: 16px;
   }

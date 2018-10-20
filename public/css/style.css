@@ -1,9 +1,30 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background:url(/images/6.jpg);
+  background:url(/images/6.jpg) ;
 }
 
 a {
   color: #00B7FF;
+}
+
+.container h1{
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.container{
+  box-shadow: -5px 6px 5px #D3D3D3;
+  width: 1172px;
+  height: 600px;
+  margin: auto;
+  background: white;
+  opacity: 0.75;
+}
+
+.container .row1{
+  margin-top: 150px;
 }
