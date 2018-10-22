@@ -19,7 +19,7 @@
   .container .menu {
     width: 260px;
     height: 100%;
-    background: #E1E4D9;
+    background: rgb(59, 84, 139);
     opacity: 0.8;
   }
   
@@ -44,7 +44,8 @@
   
   /* // ======== [左侧菜单] ======== */
   .menu {
-    border-right: 1px solid #000;
+    /* border-right: 1px solid rgb(11, 11, 12); */
+    box-shadow: 5px 5px 2px rgb(8, 8, 8);
   }
   
   .menu ul{
@@ -59,6 +60,9 @@
     
   }
   
+  .menu .menu_item :hover{
+    color: red;
+  }
   .menu .menu_item a{
     color: #000;
   }
