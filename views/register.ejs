@@ -20,31 +20,36 @@
             <div class="form-group">
               <label class="control-label col-sm-4">用户名：</label>
               <div class="col-sm-8">
-                <input type="text" name="username" class="form-control" placeholder="请输入用户名">
+                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
+                <span class="username-error" style="display:none">用户名有误，请重新输入（必须是5-10位）</span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-4">密码：</label>
               <div class="col-sm-8">
-                <input type="password" name="password" class="form-control" placeholder="请输入密码">
+                <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+                <span class="password-error" style="display:none">密码格式不正确（必须是6-14位）</span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-4">确认密码：</label>
               <div class="col-sm-8">
-                <input type="password" name="repassword" class="form-control" placeholder="请再次输入密码">
+                <input type="password" name="repassword" class="form-control" id="repeatPwd" placeholder="请再次输入密码">
+                <span class="repeatPwd-error" style="display:none">密码错误，请重新输入</span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-4">昵称：</label>
               <div class="col-sm-8">
-                <input type="text" name="nickname" class="form-control" placeholder="请输入昵称">
+                <input type="text" name="nickname" class="form-control" id="nickname" placeholder="请输入昵称">
+                <span class="nickname-error" style="display:none">昵称要在两个字以上哦</span>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-4">手机号码：</label>
               <div class="col-sm-8">
-                <input type="text" name="phone" class="form-control" placeholder="请输入手机号码">
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="请输入手机号码">
+                <span class="phone-error" style="display:none">手机号有误，请重新输入</span>
               </div>
             </div>
             <div class="form-group">
@@ -59,8 +64,9 @@
       </div>
     </div>
   </div>
-
+    
     <script src="/lib/jquery/jquery.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/reg.js"></script>
   </body>
 </html>

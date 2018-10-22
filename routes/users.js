@@ -18,8 +18,18 @@ router.post('/register',function(req,res){
   //1.用户名必须是 5 - 10 的字符
   if(/^w{5,10}$/.test(req.body.username)){
     res.render('werror',{ code: -1, msg: '用户名有误,请重新输入 (必须是 5-10 位)'});
-    return;
+ 
+  }else if(/^\w{5,13}$/.test(req.body.password)){
+    res.render('werror',{ code: -1, msg: '密码有误,请重新输入 (必须是 6-14 位)'});
+
+  }else if(/^\S{1}$/.test(req.body.nickname)){
+    res.render('werror',{ code: -1, msg: '昵称有误,请重新输入 (必须是 2 位)'});
+
+  }else if(/^1[3-9]\d{8}$/.test(req.body.phone)){
+    res.render('werror',{ code: -1, msg: '手机号输入有误,请重新输入 (必须是 11 位)'});
+    
   }
+
   //操作数据库写入信息
 
   //这里的捕获捕获不到， try catch 只能捕获同步的代码

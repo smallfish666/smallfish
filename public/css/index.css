@@ -28,6 +28,7 @@
     height: 100%;
     background: #E4E9E7;
     opacity: 0.8;
+    /* background: url(/images/fen.jpg) no-repeat center; */
   }
   
   /* // ======== [头部样式] ======== */
@@ -141,4 +142,20 @@
 
   .main ul li{
     float: left;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(70, 87, 182);
+    line-height: 30px;
+    text-align: center;
+    
+  }
+
+  .main ul li a {
+    color: #3498DB;
+  }
+  .main p{
+    font-size: 30px;
+    margin-left: 20px;
+    color: #000;
+    font-weight: 700;
   }
