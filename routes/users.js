@@ -110,4 +110,33 @@ router.get('/logout', function(req,res){
   // res.location('/login.html');
   // res.end();
 })
+
+
+//用户删除
+router.get('/delete',function(req,res){
+  var id = parseInt(req.query.id);
+  console.log(id);
+  usersModel.delUser(id,function(err){
+    
+    if(err){
+      res.render('werror',err);
+    }
+  }); 
+  res.redirect('/user-manager.html');
+});
+
+//用户修改
+router.post('/update',function(req,res){  
+  usersModel.updateUser(req.body, function(err){
+    console.log("===");
+    console.log(req.body);
+    console.log("===");
+    if(err){
+      res.render('werror',err);
+    }else{
+      res.redirect('/user-manager.html');
+    }
+  });
+});
+
 module.exports = router;

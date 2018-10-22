@@ -17,11 +17,13 @@
     <div class="container">
 
       <%- include('./common/menu.ejs', { isAdmin: isAdmin }) %>
-
+      
       <div class="main">
 
+        <div class="sous">
         <input type="text" placeholder="输入用户昵称">
         <button>搜索</button>
+        </div>
 
         <table>
           <thead>
@@ -36,7 +38,9 @@
               <th>操作</th>
             </tr>
           </thead>
-
+          
+    
+    
           <tbody>
             <!-- 循环 userList 显示用户数据 -->
             <% for (var i = 0; i < userList.length; i++) { %>
@@ -54,22 +58,40 @@
                     2. 如果这条记录是管理员记录的话，那么不可以删除
                    -->
 
-                  <% if (userList[i].username === username) { %>
-                    <a href="#">修改</a>
+                   <% if (userList[i].username === username) { %>
+                    <a href="#" class="update">修改</a>
                   <% } else if (parseInt(userList[i].is_admin)) { %>
 
                   <% } else { %>
-                    <a href="#">修改</a>
-                    <a href="#">删除</a>
+                    <a href="#" class="update">修改</a>
+                    <a href="/users/delete?id=<%= userList[i]._id %>">删除</a>
                   <% } %>
-
+                  
                 </td>
               </tr>
             <% } %>
-
+           
           </tbody>
         </table>
-
+        <div id="updateBox">
+            <h2>修改</h2>
+            <form action="/users/update" method="post">
+              <label class="change">
+                <span>用户名</span>
+                <input type="text" name="username" class="updateUser" value="" readonly>
+              </label>
+              <label class="change">
+                <span>昵称</span>
+                <input type="text" name="nickname" class="updateNick" value="">
+              </label>
+              <label class="change">
+                <span>电话号码</span>
+                <input type="text" name="phone" class="updatePhone" value="">
+              </label>
+                <input type="submit" value="确认" id="sub">
+                <i class="cancle">取消</i>
+            </form>
+          </div>
         <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->
 
         <ul>
@@ -87,3 +109,5 @@
 
 </body>
 </html>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery/user-manager.js"></script>

@@ -64,12 +64,17 @@ const usersModel = {
 
                 function (callback) {
                     //查询表的所有记录条数
-                    db.collection('users').find().count(function(err, num){
+                    db.collection('users').find().sort({_id:-1}).toArray(function(err, results){
                         if (err) {
                             callback({ code: -101, msg: '查询表的所有记录条数失败'});
                         } else {
-                            saveDate._id = num + 1;
-                            callback(null);
+                            if(results === ''){
+                                saveDate._id = 1
+                            }else{
+                                var num = results[0]._id
+                                saveDate._id = num +1
+                            }
+                            callback(null)
                         }
                     })
 
@@ -273,8 +278,69 @@ const usersModel = {
         // })
       }
     })
-  }
-}
+  },
 
+
+
+
+ //删除用户
+
+ delUser(data,cb) {
+    MongoClient.connect(url, function(err, client) {
+      if (err) {
+        cb({code: -100, msg: '数据库连接失败'});
+      } else {
+        const db = client.db('smallfish');
+        db.collection('users').remove({_id:data},function(err){
+            if(err){
+                cb({ code: -101, msg: "删除失败" });
+            }else{
+                cb(null);
+            }
+        });  
+      }
+      client.close();
+    });
+  },
+
+  //修改用户信息
+  /**
+   * 
+   * @param {object} data 修改的用户信息 
+   * @param {Function} cb 回调函数 
+   */
+   updateUser(data,cb){
+    MongoClient.connect(url, function(err, client) {
+      let saveData = {
+        username: data.username,
+        password: data.password,
+        nickname: data.nickname,
+        phone: data.phone,
+        is_admin: data.isAdmin
+      };
+      if (err) {
+        console.log("连接数据库失败");
+        cb({code: -100, msg: '数据库连接失败'});
+        return;
+      } else {
+        const db = client.db('smallfish');
+        db.collection("users").updateOne({
+          username : saveData.username
+        },{
+          $set : {
+            nickname: saveData.nickname,
+            phone: saveData.phone
+          }
+        },function(err){
+          if(err) throw err;
+          console.log("修改成功");
+          cb(null);
+        });
+        client.close();
+      }
+   });
+  }
+
+}
 
 module.exports = usersModel;

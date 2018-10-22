@@ -105,14 +105,14 @@
     border: none;
   }
 
-  .main input{
+  .sous input{
     width: 502px;
     height: 40px;
     margin-left: 352px;
     margin-top: 20px;
   }
 
-  .main button{
+  .sous button{
     width: 40px;
     height: 40px;
     border: none;
@@ -159,3 +159,44 @@
     color: #000;
     font-weight: 700;
   }
+
+  #updateBox{
+    position: fixed;
+    top:200px;
+    left: 280px;
+    padding: 20px 40px;
+    background: #D7DCD5;
+    border: 1px solid #000;
+    display: none;
+  }
+  #updateBox h2{
+    text-align: center;
+  }
+  label.change{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+  }
+  label.change span{
+    display: inline-block;
+    width: 60px;
+  }
+  label.change input{
+    border: none;
+    width: 160px;
+    height: 30px;
+  }
+ #updateBox #sub{
+    display: inline-block;
+    padding: 10px 20px;
+    background: #307294;
+    margin-right: 80px;;
+    border: none;
+    cursor: pointer;
+  }
+ i.cancle{
+    padding: 10px 20px;
+    background: #307294;
+    cursor: pointer;
+  }
+  

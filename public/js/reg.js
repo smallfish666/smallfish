@@ -45,3 +45,12 @@ var usernameReg = /^\w{5,12}$/;
             $(".phone-error").show();
         }
     });
+
+
+    $("#sub").click(function(){
+        if((usernameFlag&&pwdFlag&&repwdFlagg&&nickReg&&phoneReg)!= true){
+            alert("请正确填写表单");
+            
+            event.preventDefault();
+        }                  
+    });
