@@ -19,9 +19,6 @@ router.post('/register',function(req,res){
   if(/^w{5,10}$/.test(req.body.username)){
     res.render('werror',{ code: -1, msg: '用户名有误,请重新输入 (必须是 5-10 位)'});
  
-  }else if(/^\w{5,13}$/.test(req.body.password)){
-    res.render('werror',{ code: -1, msg: '密码有误,请重新输入 (必须是 6-14 位)'});
-
   }else if(/^\S{1}$/.test(req.body.nickname)){
     res.render('werror',{ code: -1, msg: '昵称有误,请重新输入 (必须是 2 位)'});
 
