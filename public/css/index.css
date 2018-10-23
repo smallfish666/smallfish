@@ -200,13 +200,119 @@
     cursor: pointer;
   }
   
-.main p{
-  width: 100px;
+.main h1{
+  width: 120px;
   height: 30px;
   border: 1px solid #307294;
   font-size: 14px;
   line-height: 30px;
   text-align: center;
-  margin: 20px;
+  margin: 20px 0 0 50px;
+  cursor: pointer;
+  background: #3498DB;
+  border-radius: 5px;
+}
+
+.main .highlight{
+  font-size: 30px;
+  color: red;
+  text-align: center;
+  width: 100%;
+  box-shadow: 5px 5px 5px #797979;
+}
+
+#addBox{
+  position: fixed;
+  top:200px;
+  left: 626px;
+  padding: 20px 40px;
+  background: #D7DCD5;
+  border: 1px solid #000;
+  width: 500px;
+  height: 380px;
+  display: none;
+}
+#addBox h2{
+  text-align: center;
+  font-size: 20px;
+}
+label.change1{
+  display: block;
+  height: 50px;
+  line-height: 50px;
+}
+label.change1 span{
+  display: inline-block;
+  width: 112px;
+  margin-left: 30px;
+}
+label.change1 input{
+  border: 1px solid #898889;
+  width: 232px;
+  height: 30px;
+}
+#addBox select{
+  width: 232px;
+  height: 30px;
+}
+#addBox #sub{
+  display: inline-block;
+  padding: 10px 20px;
+  background: #307294;
+  margin-left: 130px;
+  border: none;
+  cursor: pointer;
+  margin-right: 30px;
+}
+i.cancle1{
+  padding: 10px 20px;
+  background: #307294;
+  cursor: pointer;
+}
+
+#addbrandBox{
+  position: fixed;
+  top:200px;
+  left: 626px;
+  padding: 20px 40px;
+  background: #D7DCD5;
+  border: 1px solid #000;
+  width: 500px;
+  height: 280px;
+  margin-top: 20px;
+  display: none;
+}
+#addbrandBox h2{
+  text-align: center;
+  font-size: 20px;
+}
+label.change2{
+  display: block;
+  height: 70px;
+  line-height: 50px;
+}
+label.change2 span{
+  display: inline-block;
+  width: 112px;
+  margin-left: 30px;
+}
+label.change2 input{
+  border: 1px solid #898889;
+  width: 232px;
+  height: 30px;
+}
+
+#addbrandBox #sub{
+  display: inline-block;
+  padding: 10px 20px;
+  background: #307294;
+  margin-left: 130px;
+  border: none;
+  cursor: pointer;
+  margin-right: 30px;
+}
+i.cancle2{
+  padding: 10px 20px;
+  background: #307294;
   cursor: pointer;
 }

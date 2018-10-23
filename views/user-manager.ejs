@@ -19,6 +19,8 @@
       <%- include('./common/menu.ejs', { isAdmin: isAdmin }) %>
       
       <div class="main">
+        <h2 class="
+        highlight">用户管理</h2>
         <form action="/users/search" method="get" class="sous">
             <input type="text" placeholder="输入用户昵称" name="nickname">
             <button type="submit">搜索</button>

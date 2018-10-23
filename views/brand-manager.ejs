@@ -1,21 +1,86 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>index</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel='stylesheet' href='/css/index.css' />
-  </head>
-  <body>
-    <div class="index">
-      <%- include('./common/header.ejs',{nickname:nickname,isAdmin: isAdmin}) %> 
-      <div class="container">
-        <div class="menu">
-           <%- include('./common/menu.ejs',{isAdmin:isAdmin}) %> 
-        </div>
-        <div class="main">
-            
-        </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+  <div class="index">
+    <%- include('./common/header.ejs', { nickname: nickname, isAdmin: isAdmin }) %>
+    <div class="container">
+      <%- include('./common/menu.ejs', { isAdmin: isAdmin }) %>
+      <div class="main">
+          <h2 class="
+          highlight">品牌管理</h2>
+        <h1 id="brand">新增品牌</h1>
+        <table cellspacing="1" cellpadding="1">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>品牌logo</th>
+              <th>品牌名称</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 循环 userList 显示用户数据 -->
+              <tr>
+                <td>1</td>
+                <td><img src="/images/iphone xs max.jpg" /></td>
+                <td>苹果</td>
+                <td>
+                  <!--
+                    1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
+                    2. 如果这条记录是管理员记录的话，那么不可以删除
+                   -->
+                    <a href="#" class="update">修改</a>
+                    <a href="#">删除</a>
+                </td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><img src="/images/xiaomi6.jpg" /></td>
+                  <td>小米</td>
+                  <td>
+                    <!--
+                      1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
+                      2. 如果这条记录是管理员记录的话，那么不可以删除
+                     -->
+                     <a href="#" class="update">修改</a>
+                     <a href="#">删除</a>
+                  </td>
+                </tr>
+          </tbody>
+        </table>
+        <div id="addbrandBox">
+            <h2>新增品牌</h2>
+            <form action="/users/update" method="post">
+              <label class="change2">
+                <span>名称</span>
+                <input type="text" name="adduser" class="addbranduser" value="">
+              </label>
+              <label class="change2">
+                  <span>品牌logo</span>
+                  <input type="file" name="addimg" class="addbrandimg" value="">
+              </label>
+              <input type="text" name="id" style="display:none"  id="ID">
+                <input type="submit" value="确认" id="sub">
+                <i class="cancle2">取消</i>
+            </form>
+          </div>
+        <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->
+        <ul>
+
+        </ul>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/brand-manager.js"></script>

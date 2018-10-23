@@ -84,5 +84,19 @@ router.get('/mobile-manager.html',function(req,res){
   }
 })
 
+//品牌管理页面
+router.get('/brand-manager.html',function(req,res){
+  //判断用户是否登录
+  if(req.cookies.username){
+    res.render('brand-manager',{
+      username: req.cookies.username,
+      nickname: req.cookies.nickname,
+      isAdmin: parseInt(req.cookies.isAdmin) ? '(管理员)' : ''
 
+      
+    });
+  }else{
+    res.redirect('/login.html');
+  }
+})
 module.exports = router;
