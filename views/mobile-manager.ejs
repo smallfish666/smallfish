@@ -15,7 +15,8 @@
     <div class="container">
       <%- include('./common/menu.ejs', { isAdmin: isAdmin }) %>
       <div class="main">
-        <table cellspacing="0" cellpadding="0">
+        <p>新增手机</p>
+        <table cellspacing="1" cellpadding="1">
           <thead>
             <tr>
               <th>序号</th>
@@ -31,7 +32,7 @@
             <!-- 循环 userList 显示用户数据 -->
               <tr>
                 <td>1</td>
-                <td>图</td>
+                <td><img src="/images/iphone xs max.jpg" /></td>
                 <td>苹果 iphone XS Max</td>
                 <td>苹果</td>
                 <td>￥18000</td>
@@ -41,8 +42,26 @@
                     1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
                     2. 如果这条记录是管理员记录的话，那么不可以删除
                    -->
+                    <a href="#" class="update">修改</a>
+                    <a href="#">删除</a>
                 </td>
               </tr>
+              <tr>
+                  <td>2</td>
+                  <td><img src="/images/xiaomi6.jpg" /></td>
+                  <td>小米手机6</td>
+                  <td>小米</td>
+                  <td>￥2000</td>
+                  <td>￥1500</td>
+                  <td>
+                    <!--
+                      1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
+                      2. 如果这条记录是管理员记录的话，那么不可以删除
+                     -->
+                     <a href="#" class="update">修改</a>
+                     <a href="#">删除</a>
+                  </td>
+                </tr>
           </tbody>
         </table>
         <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->

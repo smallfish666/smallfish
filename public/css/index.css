@@ -200,3 +200,13 @@
     cursor: pointer;
   }
   
+.main p{
+  width: 100px;
+  height: 30px;
+  border: 1px solid #307294;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+  margin: 20px;
+  cursor: pointer;
+}
