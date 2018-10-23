@@ -331,16 +331,72 @@ const usersModel = {
             nickname: saveData.nickname,
             phone: saveData.phone
           }
-        },function(err){
-          if(err) throw err;
-          console.log("修改成功");
-          cb(null);
         });
+        cb(null);
         client.close();
       }
    });
-  }
+  },
+  //搜索用户信息
+  /** 
+   *    @param {Object} nick  用户昵称
+   *    @param {Function} cb  回调函数
+   * 
+   */
+  searchUser(data,cb){
+      var searchdata = new RegExp(data.searchName);
+      console.log('===')
+      console.log(searchdata);
+      MongoClient.connect(url,function(err,client){
+          if(err){
+              console.log('连接数据库失败');
+              cb( {code:-101 , msg: '数据库连接失败'});
+          }else{
+              const db = client.db('smallfish');
+              let limitNum = parseInt(data.pageSize);
+              let skipNum = data.page*data.pageSize-data.pageSize;
+              async.parallel([
+                  function(callback){
+                      db.collection('users').find({nickname:searchdata}).count(function(err,num){
+                          if(err){
+                              console.log('查询数据条数失败');
+                              cb({ code :-10 ,msg : '查询数据条数失败'});
+                          }else{
+                              callback(null,num);
+                          }
+                      });
+                  },
+                  function(callback){
+                      //查询分页
+                      db.collection('users').find({nickname:searchdata}).limit(limitNum).skip(skipNum).toArray(function(err,userList){
+                          if(err){
+                              console.log('查询分页失败');
+                              cb({ code: -10 ,msg:'查询分页失败'});
+                          }else{
+                              callback(null,userList);
+                          }
+                      });
+                  }
+              ],function(err,results){
+                  console.log('--------');
+                  console.log(results[1]);
+                  if(err){
+                      cb(err);
+                  }else{
+                    cb(null,{
+                        totalPage:Math.ceil(results[0]/limitNum),
+                        userList:results[1],
+                        page:data.page
+                      });
 
-}
+                  }
+                  client.close();
+              });
+          }
+      });
+
+  },
+
+};
 
 module.exports = usersModel;

@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+    res.send('respond with a resource');
+  });
 //引入multer  并设置好默认的一个tmp目录
 const multer = require('multer');
 const upload = multer({
@@ -47,5 +51,27 @@ router.post('/add',upload.single('mobile'),function(req,res){
         }
     });
     res.send();
+
+        //退出登录
+        router.get('/logout', function(req,res){
+        //清除cookie
+        //跳转  登录页
+    
+        // if(!req.cookies.username){
+        //   res.redirect('/login.html');
+        // }
+    
+        res.clearCookie('username');
+        res.clearCookie('nickname');
+        res.clearCookie('isAdmin');
+    
+        res.send('<script>location.replace("/")</script>');
+    
+        //res.redirect('/login.html');
+    
+        // res.redirect(200,'/login.html');
+        // res.location('/login.html');
+        // res.end();
+   })
 });
 module.exports = router;

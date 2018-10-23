@@ -19,13 +19,11 @@
       <%- include('./common/menu.ejs', { isAdmin: isAdmin }) %>
       
       <div class="main">
-
-        <div class="sous">
-        <input type="text" placeholder="输入用户昵称">
-        <button>搜索</button>
-        </div>
-
-        <table>
+        <form action="/users/search" method="get" class="sous">
+            <input type="text" placeholder="输入用户昵称" name="nickname">
+            <button type="submit">搜索</button>
+        </form>
+        <table cellspacing="0" cellpadding="0">
           <thead>
             <tr>
               <th>序号</th>
@@ -46,9 +44,9 @@
             <% for (var i = 0; i < userList.length; i++) { %>
               <tr>
                 <td><%= userList[i]._id %></td>
-                <td><%= userList[i].username %></td>
-                <td><%= userList[i].nickname %></td>
-                <td><%= userList[i].phone %></td>
+                <td class="userName"><%= userList[i].username %></td>
+                <td class="nickName"><%= userList[i].nickname %></td>
+                <td class="phone"><%= userList[i].phone %></td>
                 <td><%= userList[i].sex || '-' %></td>
                 <td><%= userList[i].age || '-' %></td>
                 <td><%= parseInt(userList[i].is_admin) ? '是' : '否' %></td>
@@ -63,7 +61,7 @@
                   <% } else if (parseInt(userList[i].is_admin)) { %>
 
                   <% } else { %>
-                    <a href="#" class="update">修改</a>
+                    <a href="javascript:;" class="update">修改</a>
                     <a href="/users/delete?id=<%= userList[i]._id %>">删除</a>
                   <% } %>
                   
@@ -88,6 +86,7 @@
                 <span>电话号码</span>
                 <input type="text" name="phone" class="updatePhone" value="">
               </label>
+              <input type="text" name="id" style="display:none"  id="ID">
                 <input type="submit" value="确认" id="sub">
                 <i class="cancle">取消</i>
             </form>
@@ -110,4 +109,11 @@
 </body>
 </html>
 <script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/jquery/user-manager.js"></script>
+<script src="/js/user-manager.js"></script>
+<script>
+  $('.update').click(function(){
+    // alert(1);
+   var ID =  $(this).parent().parent().children().eq(0).text();
+   $('#ID').val(ID);
+  });
+</script>

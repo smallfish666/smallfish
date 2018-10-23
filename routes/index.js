@@ -69,13 +69,20 @@ router.get('/user-manager.html', function(req, res){
 
 
 //手机管理页面
-router.get('/user-manager.html', function(req, res){
-  //同首页， 需要判断是否登录， 并且判断用户是否是管理员
-  if(req.cookies.username && parseInt(req.cookies.isAdmin)){
-    res.render('mobile-manager');
-  } else {
+router.get('/mobile-manager.html',function(req,res){
+  //判断用户是否登录
+  if(req.cookies.username){
+    res.render('mobile-manager',{
+      username: req.cookies.username,
+      nickname: req.cookies.nickname,
+      isAdmin: parseInt(req.cookies.isAdmin) ? '(管理员)' : ''
+
+      
+    });
+  }else{
     res.redirect('/login.html');
   }
 })
+
 
 module.exports = router;
