@@ -1,6 +1,6 @@
 $("#addMobileBtn").click(function(){
     $("#addBox").fadeIn();
 });
-$("#cancleBrand").click(function(){
+$(".cancleBrand").click(function(){
     $("#addBox").fadeOut();
 });
