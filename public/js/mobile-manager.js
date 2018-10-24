@@ -1,3 +1,3 @@
-$("#add").click(function(){
+$("#addMobileBtn").click(function(){
     $("#addBox").fadeIn();
 });

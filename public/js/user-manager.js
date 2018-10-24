@@ -7,3 +7,19 @@ $(".update").click(function(){
 $(".cancle").click(function(){
     $("#updateBox").fadeOut();
 });
+
+$(".addBrandBtn").click(function(){
+    $(".addbrandBox").fadeIn();
+})
+$(".cancleBrand").click(function(){
+    $(".addbrandBox").fadeOut();
+});
+
+$.post('/mobile/addbrand',function(result) {
+    console.log(result.data[0].brandname)
+    var html = ''
+    for(var i = 0 ; i < result.data.length;i++){
+        html += `<option>${result.data[i].brandname}</option>`
+    }
+    $('.selBrand').append(html);
+})

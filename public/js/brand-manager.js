@@ -1,3 +1,3 @@
-$("#brand").click(function(){
+$("#addBrandBtn").click(function(){
     $("#addbrandBox").fadeIn();
 });
