@@ -9,11 +9,6 @@ $(".cancle").click(function(){
 });
 
 
-
-
-
-
-
 $.post('/mobile/addbrand',function(result) {
     console.log(result.data[0].addbrand)
     var html = ''
