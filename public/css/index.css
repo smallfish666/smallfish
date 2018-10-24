@@ -126,6 +126,11 @@
     margin: auto;
     margin-top: 50px;
   }
+
+  .main .tab{
+    margin-top: 0px;
+  }
+
   .main table tr{
     border: 1px solid #797979;
   }

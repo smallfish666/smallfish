@@ -77,7 +77,7 @@ router.get('/mobile-manager.html',function(req,res){
     // 需要查询数据库
     // 从前端取得2个参数
     let page = req.query.page || 1; // 页码
-    let pageSize = req.query.pageSize || 5; // 每页显示的条数
+    let pageSize = req.query.pageSize || 3; // 每页显示的条数
 
     mobileModel.getMobileInfo({
       page: page,

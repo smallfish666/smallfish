@@ -18,7 +18,7 @@
           <h2 class="
           highlight">手机管理</h2>
         <h1 id="addMobileBtn">新增手机</h1>
-        <table cellspacing="1" cellpadding="1">
+        <table class="tab">
           <thead>
             <tr>
               <th>序号</th>
@@ -35,10 +35,10 @@
                 <tr>
                   <td><%= mobileInfo[i]._id %></td>
                   <td><img src="/mobiles/<%= mobileInfo[i].filename%>"></td>                      
-                  <td><%= mobileInfo[i].mobilename %></td>
-                  <td><%= mobileInfo[i].brandname %></td>
-                  <td><%= mobileInfo[i].authorprice %></td>
-                  <td><%= mobileInfo[i].shandprice %></td>
+                  <td><%= mobileInfo[i].adduser %></td>
+                  <td><%= mobileInfo[i].addbrand %></td>
+                  <td><%= mobileInfo[i].addprice %></td>
+                  <td><%= mobileInfo[i].unaddprice %></td>
                   <td>
                     <a href="#">修改</a>
                     <a href="/mobile/delete?id=<%= mobileInfo[i]._id %>">删除</a>
@@ -82,14 +82,14 @@
         </table>
         <div id="addBox">
             <h2>新增手机</h2>
-            <form action="/users/update" method="post">
+            <form action="/mobile/add" method="post" enctype="multipart/form-data">
               <label class="change1">
                 <span>名称</span>
                 <input type="text" name="adduser" class="adduser" value="">
               </label>
               <label class="change1">
                 <span>品牌</span>
-                <select type="text" name="addbrand" class="addbrand" value="">
+                <select type="text" name="addbrand" class="selBrand" value="">
                   <option>苹果</option>
                   <option>小米</option>
                   <option>vivo</option>
@@ -116,9 +116,17 @@
             </form>
           </div>
         <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->
+
+
         <ul>
+            <% for (var i = 0; i < totalPage; i++) { %>
+              <li>
+                <a href="/mobile-manager.html?page=<%= i+1 %>" ><%= i+1 %>页</a>
+              </li>
+            <% } %>
 
         </ul>
+
       </div>
     </div>
   </div>

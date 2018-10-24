@@ -24,11 +24,11 @@ const mobileModel = {
       const db = client.db('smallfish');
 
       let saveData = {
-        mobilename: data.mobilename,
+        adduser: data.adduser,
         filename: data.filename,
-        brandname : data.brandname,
-        authorprice : data.authorprice,
-        shandprice : data.shandprice
+        addbrand : data.addbrand,
+        addprice : data.addprice,
+        unaddprice : data.unaddprice
       };
 
       //  async串行无关联
@@ -36,7 +36,7 @@ const mobileModel = {
       async.series([
         function (callback) {
           // 查询是否已有该手机
-          db.collection('mobile').find({mobilename: saveData.mobilename}).count(function(err, num) {
+          db.collection('mobile').find({adduser: saveData.adduser}).count(function(err, num) {
             if (err) {
               callback({ code: -101, msg: '查询是否已新增失败' });
             } else if (num !== 0) {

@@ -11,11 +11,11 @@ const fs = require('fs');
 const path = require('path');
 
 // 手机新增
-router.post('/add', upload.single('fileimg'), function(req, res) {
+router.post('/add', upload.single('addimg'), function(req, res) {
 
-    console.log("--------");
+
     console.log(req.body);
-    console.log("--------");
+
     fs.readFile(req.file.path, function(err, data) {
         if (err) {
             console.log('读文件失败', err);
@@ -33,7 +33,7 @@ router.post('/add', upload.single('fileimg'), function(req, res) {
             console.log(req.body);
             mobileModel.add({
                 filename:fileName,
-                adduser:req.body.adduser,
+                adduser: req.body.adduser,
                 addbrand : req.body.addbrand,
                 addprice : req.body.addprice,
                 unaddprice : req.body.unaddprice

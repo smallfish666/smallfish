@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://127.0.0.1:27017';
 const brandModel = require('../model/brandModel.js');
 const multer = require('multer')
 const upload = multer({
@@ -34,7 +36,7 @@ router.post('/add', upload.single('fileimg'), function(req, res) {
 
             console.log('-----'+fileName);
             console.log(req.body);
-            brandModel.add({filename:fileName,brandname:req.body.brandname}, function(err) {
+            brandModel.add({filename:fileName,addbranduser:req.body.addbranduser}, function(err) {
                 if (err) {
                   // 如果有错误，直接将错误信息渲染到页面
                   res.render('werror', err);
@@ -60,6 +62,24 @@ router.get('/delete',function(req,res){
     res.redirect('/brand-manager.html');
   });
 
-
+  //品牌option
+  router.post('/addbranduser', function(req, res) {
+      console.log(1);
+      MongoClient.connect(url, function(err, client) {
+          if (err) {
+              console.log('连接数据库失败')
+              res.send({code:-1,msg:'网络异常，请稍后重试'})
+          } else {
+              var db = client.db('smallfish')
+              db.collection('brand').find().toArray(function(err,data){
+               if (err) {
+                   res.send({code:-2,msg:'数据库查询失败'})
+               } else {
+                   res.send({code:0,msg:'查询成功', data: data})
+               }
+           }) 
+          }
+      })
+   });
   
 module.exports = router;

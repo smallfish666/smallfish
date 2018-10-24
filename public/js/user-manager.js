@@ -8,18 +8,23 @@ $(".cancle").click(function(){
     $("#updateBox").fadeOut();
 });
 
-$(".addBrandBtn").click(function(){
-    $(".addbrandBox").fadeIn();
-})
-$(".cancleBrand").click(function(){
-    $(".addbrandBox").fadeOut();
+$("#addBrandBtn").click(function(){
+    $("#addbrandBox").fadeIn();
+});
+$("#cancleBrand").click(function(){
+    $("#addbrandBox").fadeOut();
 });
 
+
+
+
+
 $.post('/mobile/addbrand',function(result) {
-    console.log(result.data[0].brandname)
+    console.log(result.data[0].addbrand)
     var html = ''
     for(var i = 0 ; i < result.data.length;i++){
-        html += `<option>${result.data[i].brandname}</option>`
+        html += `<option>${result.data[i].addbrand}</option>`
     }
     $('.selBrand').append(html);
 })
+
