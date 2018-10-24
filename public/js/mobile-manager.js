@@ -19,19 +19,18 @@ $(".cancleMobile").click(function(){
     $("#updateMobileBox").fadeOut();
 });
 
-
 //高亮
 $(function(){
-    var userhh = location.href.split("0/")[1].split("-")[0];
+    var ustr = location.href.split("0/")[1].split("-")[0];
       console.log(ustr);
-    if(userhh == "user"){
-        $(".usercontrol").css("background","#67E8CB")
-    }else if(userhh == "mobile"){
-        $(".mobilecontrol").css("background","#67E8CB")
-    }else if(userhh == "brand"){
-      $(".logocontrol").css("background","#67E8CB")
-    }else if(userhh.split("/")[0]== "users"){
-      $(".usercontrol").css("background","#67E8CB")
+    if(ustr == "user"){
+        $(".usercontrol").css("color","brown")
+    }else if(ustr == "mobile"){
+        $(".mobilecontrol").css("color","brown")
+    }else if(ustr == "brand"){
+      $(".logocontrol").css("color","brown")
+    }else if(ustr.split("/")[0]== "users"){
+      $(".usercontrol").css("color","brown")
     }
-    
+    console.log(location.href)
 })
