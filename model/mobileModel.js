@@ -147,6 +147,47 @@ const mobileModel = {
       })
   },
 
+
+  //修改用户信息
+  /**
+   * 
+   * @param {object} data 修改的用户信息 
+   * @param {Function} cb 回调函数 
+   */
+  updateMobile(data,cb){
+    MongoClient.connect(url, function(err, client) {
+      let saveData = {
+        adduser: data.adduser,
+        addbrand: data.addbrand,
+        addprice: data.addprice,
+        unaddprice: data.unaddprice
+      };
+      if (err) {
+        console.log("连接数据库失败");
+        cb({code: -100, msg: '数据库连接失败'});
+        return;
+      } else {
+        const db = client.db('smallfish');
+        db.collection("mobile").updateOne({
+          adduser : saveData.adduser
+        },{
+          $set : {
+            addprice: saveData.addprice,
+            unaddprice: saveData.unaddprice
+          }
+        },function(err){
+            if(err)throw err;
+            console.log("修改成功");
+
+            cb(null);
+        });
+        client.close();
+      }
+   });
+  },
+
+
+
   //删除手机
    delMobile(data,cb){
     MongoClient.connect(url, function(err, client) {

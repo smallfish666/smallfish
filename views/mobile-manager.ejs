@@ -35,12 +35,12 @@
                 <tr>
                   <td><%= mobileInfo[i]._id %></td>
                   <td><img src="/mobiles/<%= mobileInfo[i].filename%>"></td>                      
-                  <td><%= mobileInfo[i].adduser %></td>
-                  <td><%= mobileInfo[i].addbrand %></td>
-                  <td><%= mobileInfo[i].addprice %></td>
-                  <td><%= mobileInfo[i].unaddprice %></td>
+                  <td class="auser"><%= mobileInfo[i].adduser %></td>
+                  <td class="abrand"><%= mobileInfo[i].addbrand %></td>
+                  <td class="aprice"><%= mobileInfo[i].addprice %></td>
+                  <td class="uaprice"><%= mobileInfo[i].unaddprice %></td>
                   <td>
-                    <a href="#">修改</a>
+                    <a href="#" class="updateMobileBtn">修改</a>
                     <a href="/mobile/delete?id=<%= mobileInfo[i]._id %>">删除</a>
                   </td>
                 </tr>
@@ -115,6 +115,31 @@
                 <i class="cancleBrand">取消</i>
             </form>
           </div>
+
+          <div id="updateMobileBox">
+              <h2>修改</h2>
+              <form action="/mobile/update" method="post">
+                <label class="changes">
+                  <span>手机名称</span>
+                  <input type="text" name="adduser" class="adduser" value="" readonly>
+                </label>
+                <label class="changes">
+                  <span>所属品牌</span>
+                  <input type="text" name="addbrand" class="addbrand" value="">
+                </label>
+                <label class="changes">
+                  <span>官方价</span>
+                  <input type="text" name="addprice" class="addprice" value="">
+                </label>
+                <label class="changes">
+                    <span>二手价</span>
+                    <input type="text" name="unaddprice" class="unaddprice" value="">
+                  </label>
+                <input type="text" name="id" style="display:none"  id="ID">
+                  <input type="submit" value="确认" id="sub">
+                  <i class="cancleMobile">取消</i>
+              </form>
+            </div>
         <!-- 通过 传过来  totalPage 来渲染我们的 分页组件 -->
 
 
