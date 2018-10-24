@@ -68,13 +68,13 @@ const usersModel = {
                         if (err) {
                             callback({ code: -101, msg: '查询表的所有记录条数失败'});
                         } else {
-                            if(results === ''){
-                                saveDate._id = 1
+                            if(results == ""){
+                                saveDate._id = 1;
                             }else{
                                 var num = results[0]._id
                                 saveDate._id = num +1
                             }
-                            callback(null)
+                            callback(null);
                         }
                     })
 
@@ -331,8 +331,12 @@ const usersModel = {
             nickname: saveData.nickname,
             phone: saveData.phone
           }
+        },function(err){
+            if(err)throw err;
+            console.log("修改成功");
+
+            cb(null);
         });
-        cb(null);
         client.close();
       }
    });

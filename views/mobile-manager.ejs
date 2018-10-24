@@ -31,7 +31,21 @@
             </tr>
           </thead>
           <tbody>
-            <!-- 循环 userList 显示用户数据 -->
+              <% for (var i = 0; i < mobileInfo.length; i++) { %>
+                <tr>
+                  <td><%= mobileInfo[i]._id %></td>
+                  <td><img src="/mobiles/<%= mobileInfo[i].filename%>"></td>                      
+                  <td><%= mobileInfo[i].mobilename %></td>
+                  <td><%= mobileInfo[i].brandname %></td>
+                  <td><%= mobileInfo[i].authorprice %></td>
+                  <td><%= mobileInfo[i].shandprice %></td>
+                  <td>
+                    <a href="#">修改</a>
+                    <a href="/mobile/delete?id=<%= mobileInfo[i]._id %>">删除</a>
+                  </td>
+                </tr>
+              <% } %>
+            <!-- 循环 userList 显示用户数据
               <tr>
                 <td>1</td>
                 <td><img src="/images/iphone xs max.jpg" /></td>
@@ -40,10 +54,10 @@
                 <td>￥18000</td>
                 <td>￥12000</td>
                 <td>
-                  <!--
+                  
                     1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
                     2. 如果这条记录是管理员记录的话，那么不可以删除
-                   -->
+                   
                     <a href="#" class="update">修改</a>
                     <a href="#">删除</a>
                 </td>
@@ -56,14 +70,14 @@
                   <td>￥2000</td>
                   <td>￥1500</td>
                   <td>
-                    <!--
+                    
                       1. 如果当前登录的管理员跟这条记录匹配。那么可以修改，
                       2. 如果这条记录是管理员记录的话，那么不可以删除
-                     -->
+                     
                      <a href="#" class="update">修改</a>
                      <a href="#">删除</a>
                   </td>
-                </tr>
+                </tr>-->
           </tbody>
         </table>
         <div id="addBox">
