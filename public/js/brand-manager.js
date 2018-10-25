@@ -5,7 +5,7 @@ $(".cancleBrand").click(function(){
     $("#addbrandBox").fadeOut();
 });
 
-//高亮
+//highlighting
 $(function(){
     var ustr = location.href.split("0/")[1].split("-")[0];
       console.log(ustr);

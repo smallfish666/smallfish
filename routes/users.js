@@ -28,7 +28,6 @@ router.post('/register',function(req,res){
   }
 
   //操作数据库写入信息
-
   //这里的捕获捕获不到， try catch 只能捕获同步的代码
   // try{
   //   usersModel.add(req.body,function(){
@@ -39,9 +38,9 @@ router.post('/register',function(req,res){
   // } catch (error) {
   //   console.log(error);
   //   res.render('werror',{ code: -2, msg: error });
-
   // }
   //err需要时一个  对象  的格式{ code: 0,msg: 'xxx'}
+
   usersModel.add(req.body,function(err){
     if (err) {
       //如果有错误，直接将错误信息渲染到页面
@@ -54,7 +53,6 @@ router.post('/register',function(req,res){
       res.redirect('/login.html');
     }
   })
-
 });
 
 //登录处理
@@ -66,21 +64,16 @@ router.post('/login', function(req, res){
     }else{
       //跳转到百度
       console.log('当前登录用户的信息是', data);
-
-
       //写  cookie
       res.cookie('username', data.username,{
         maxAge: 1000 * 60 * 10000,   //单位是毫秒。
       })
-
       res.cookie('nickname', data.nickname, {
         maxAge: 1000 * 60 * 10000,   //单位是毫秒。
       })
-
       res.cookie('isAdmin', data.isAdmin, {
         maxAge: 1000 * 60 * 10000,   //单位是毫秒。
       })
-
       res.redirect('/');
     }
   })
@@ -90,7 +83,6 @@ router.post('/login', function(req, res){
 router.get('/logout', function(req,res){
   //清除cookie
   //跳转  登录页
-
   // if(!req.cookies.username){
   //   res.redirect('/login.html');
   // }
@@ -98,16 +90,13 @@ router.get('/logout', function(req,res){
   res.clearCookie('username');
   res.clearCookie('nickname');
   res.clearCookie('isAdmin');
-
   res.send('<script>location.replace("/")</script>');
 
   //res.redirect('/login.html');
-
   // res.redirect(200,'/login.html');
   // res.location('/login.html');
   // res.end();
 })
-
 
 //用户删除
 router.get('/delete',function(req,res){
@@ -143,6 +132,7 @@ router.get('/search',function(req,res){
    let pageSize = req.query.pageSize || 5;
    var searchName = req.query.nickname;
    //console.log(searchName+'--------')
+   
    if(searchName==''){
      res.redirect('/user-manager.html');
    }else{

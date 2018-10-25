@@ -12,8 +12,6 @@ const path = require('path');
 
 // 手机新增
 router.post('/add', upload.single('addimg'), function(req, res) {
-
-
     console.log(req.body);
 
     fs.readFile(req.file.path, function(err, data) {
@@ -30,6 +28,7 @@ router.post('/add', upload.single('addimg'), function(req, res) {
                 console.log('写入成功');
                 }
             });
+            
             console.log(req.body);
             mobileModel.add({
                 filename:fileName,

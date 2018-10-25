@@ -7,7 +7,6 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017';
-
 const async = require('async');
 
 const usersModel = { 
@@ -16,18 +15,17 @@ const usersModel = {
      * @param {Object} data  注册信息
      * @param {Function} cb  回调函数
      */
-    add(data,cb){
 
+    add(data,cb){
         MongoClient.connect(url,function(err,client){
             if (err) {
                 console.log('链接数据库失败', err);
                 cb({ code: -100, msg: '链接数据库失败'});
-        
                 // 这里不需要关闭连接，因为没有连接成功。
                 return;
             };
+
             const db = client.db('smallfish');
-        
             //1.  对 data 里面的 isAdmin 修改位 is_admin
             //2.  写一个 ——id 为 1
             //思考 ，下一个注册 ， 先得到之前的用户表的记录条数， +1 操作之后写给下一个注册的人。
@@ -43,15 +41,12 @@ const usersModel = {
 
             //——————————————————————使用  async   的   串行无关联来写——————————————————————————————————————
 
-
             async.series([
                 function (callback) {
                     //查询是否已注册
                     db.collection('users').find({username: saveDate.username}).count(function(err, num) {
                         if (err) {
                             callback({ code: -101, msg: '查询是否已注册失败'});
-
-
                         } else if (num !==0) {
                             console.log('用户已经注册过了');
                             callback({ code: -102, msg: '用户已经注册过了'});
@@ -89,7 +84,6 @@ const usersModel = {
                             callback(null);
                         }
                     })
-
                 }
             ], function(err, results){
                 //不管上面3个异步操作是否都成功，都会写入到这个最终的回调里面
@@ -104,14 +98,8 @@ const usersModel = {
 
             });
 
-
-
-
-
             //--------------  万能的分割线   以下是回调地狱的写法-----------------------------------
-
             // console.log(saveDate);
-
             // //查询 users  表中是否存在  需要注册的用户
             // db.collection('users').find({username: saveDate.username}).count(function(err,num){
             //     //如果 num 为0 就是没有注册， 否则已经注册了
@@ -121,18 +109,15 @@ const usersModel = {
             //     } else if (num !==0) {
             //         console.log('用户已经注册过了');
             //         cb({ code: -102, msg: '用户已经注册过了'});
-            //         client.close();
-                    
+            //         client.close();        
             //     } else {
             //         console.log('用户没有注册，可以进行注册操作');
             //         //自增  _id
-
             //         db.collection('users').find().count(function(err,num){
             //             if (err) {
             //                 cb({ code: -101,msg: '查询用户记录条数失败'});
             //             } else {
             //                 saveDate._id = num + 1;
-
             //                 db.collection('users').insertOne(saveDate,function(err){
             //                     if (err) {
             //                         cb({ code: -101,msg: '用户注册失败'});
@@ -147,13 +132,6 @@ const usersModel = {
             //         })
             //     }
 
-
-
-
-
-
-
-
             //     // if (num === 0) {
                     
             //     //     db.collection('users').find().count(function(err, num){
@@ -161,7 +139,6 @@ const usersModel = {
             //     //         saveDate._id = num + 1;
             //     //         console.log(saveDate);
                     
-        
             //     //     db.collection('users').insertOne(saveDate,function(err){
             //     //         if(err) throw err;
             //     //         cb(null);
@@ -222,13 +199,13 @@ const usersModel = {
    * @param {Object} data 页码信息与每页显示条数信息
    * @param {Function} cb 回调函数
    */
+
   getUserList(data, cb) {
     MongoClient.connect(url, function(err, client) {
       if (err) {
         cb({code: -100, msg: '链接数据库失败'});
       } else {
         var db = client.db('smallfish');
-
         var limitNum = parseInt(data.pageSize);
         var skipNum = data.page * data.pageSize - data.pageSize;
 
@@ -280,9 +257,6 @@ const usersModel = {
     })
   },
 
-
-
-
  //删除用户
 
  delUser(data,cb) {
@@ -318,6 +292,7 @@ const usersModel = {
         phone: data.phone,
         is_admin: data.isAdmin
       };
+
       if (err) {
         console.log("连接数据库失败");
         cb({code: -100, msg: '数据库连接失败'});
@@ -334,19 +309,20 @@ const usersModel = {
         },function(err){
             if(err)throw err;
             console.log("修改成功");
-
             cb(null);
         });
         client.close();
       }
    });
   },
+
   //搜索用户信息
   /** 
    *    @param {Object} nick  用户昵称
    *    @param {Function} cb  回调函数
    * 
    */
+
   searchUser(data,cb){
       var searchdata = new RegExp(data.searchName);
       console.log('===')
@@ -370,6 +346,7 @@ const usersModel = {
                           }
                       });
                   },
+
                   function(callback){
                       //查询分页
                       db.collection('users').find({nickname:searchdata}).limit(limitNum).skip(skipNum).toArray(function(err,userList){
@@ -392,15 +369,12 @@ const usersModel = {
                         userList:results[1],
                         page:data.page
                       });
-
                   }
                   client.close();
               });
           }
       });
-
   },
-
 };
 
 module.exports = usersModel;

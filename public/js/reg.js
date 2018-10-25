@@ -18,6 +18,7 @@ var usernameReg = /^\w{5,12}$/;
             $(".password-error").show();
         }
     });
+
     $("#repeatPwd").blur(function () {
         var repeatPwd = $(this).val();
         if (repeatPwd == $("#password").val()) {
@@ -36,6 +37,7 @@ var usernameReg = /^\w{5,12}$/;
             $(".nickname-error").show();
         }
     });
+
     var phoneReg = /^1[3-9]\d{9}$/;
     $("#phone").blur(function () {
         var phone = $(this).val();
@@ -46,11 +48,9 @@ var usernameReg = /^\w{5,12}$/;
         }
     });
 
-
     $("#sub").click(function(){
         if((usernameFlag&&pwdFlag&&repwdFlagg&&nickReg&&phoneReg)!= true){
-            alert("请正确填写表单");
-            
+            alert("请正确填写表单");           
             event.preventDefault();
         }                  
     });

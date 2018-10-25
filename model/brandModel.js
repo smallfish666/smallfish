@@ -7,11 +7,13 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017';
 const async = require('async');
 const brandModel = {
+
     /**
    * 新增操作
    * @param {Object} data 新增信息
    * @param {Function} cb 回调函数
    */
+
   add (data, cb) {
     MongoClient.connect(url, function(err, client) {
       if (err) {
@@ -22,7 +24,6 @@ const brandModel = {
         return;
       };
       const db = client.db('smallfish');
-
       let saveData = {
         addbranduser: data.addbranduser,
         filename: data.filename
@@ -58,7 +59,6 @@ const brandModel = {
                 var num = results[0]._id
                 saveData._id = num+1
               }
-             
               callback(null);
             }
           })
@@ -83,7 +83,6 @@ const brandModel = {
         } else {
           cb(null);
         }
-
         client.close();
       });
     })
@@ -94,13 +93,13 @@ const brandModel = {
    * @param {object} data 页码信息与每页显示条数信息
    * @param {Function} cb 回调函数
    */
+
   getbrandInfo(data,cb){
     MongoClient.connect(url, function(err, client) {
         if (err) {
           cb({code: -100, msg: '链接数据库失败'});
         } else {
           var db = client.db('smallfish');
-  
           var limitNum = parseInt(data.pageSize);
           var skipNum = data.page * data.pageSize - data.pageSize;
   
@@ -136,7 +135,6 @@ const brandModel = {
                 page: data.page,
               })
             }
-  
             // 关闭连接
             client.close();
           })
@@ -158,8 +156,6 @@ const brandModel = {
       client.close();
     });
   },
-
 };
-
 
 module.exports = brandModel;

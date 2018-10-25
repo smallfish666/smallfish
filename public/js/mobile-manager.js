@@ -5,9 +5,6 @@ $(".cancleBrand").click(function(){
     $("#addBox").fadeOut();
 });
 
-
-
-
 $(".updateMobileBtn").click(function(){
     $("#updateMobileBox").fadeIn();
     $(".adduser").val($(this).parents("tr").children(".auser").text().trim());
@@ -19,7 +16,7 @@ $(".cancleMobile").click(function(){
     $("#updateMobileBox").fadeOut();
 });
 
-//高亮
+//highlighting
 $(function(){
     var ustr = location.href.split("0/")[1].split("-")[0];
       console.log(ustr);

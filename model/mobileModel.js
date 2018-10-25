@@ -7,20 +7,22 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://127.0.0.1:27017';
 const async = require('async');
 const mobileModel = {
+
     /**
    * 新增操作
    * @param {Object} data 新增信息
    * @param {Function} cb 回调函数
    */
+
   add (data, cb) {
     MongoClient.connect(url, function(err, client) {
       if (err) {
         console.log('链接数据库失败', err);
         cb({ code: -100, msg: '链接数据库失败'});
-
         // 这里不需要关闭连接，因为没有连接成功。
         return;
       };
+
       const db = client.db('smallfish');
 
       let saveData = {
@@ -60,8 +62,7 @@ const mobileModel = {
               }else{
                 var num = results[0]._id
                 saveData._id = num+1
-              }
-             
+              } 
               callback(null);
             }
           })
@@ -86,7 +87,6 @@ const mobileModel = {
         } else {
           cb(null);
         }
-
         client.close();
       });
     })
@@ -97,16 +97,16 @@ const mobileModel = {
    * @param {object} data 页码信息与每页显示条数信息
    * @param {Function} cb 回调函数
    */
+
   getMobileInfo(data,cb){
     MongoClient.connect(url, function(err, client) {
         if (err) {
           cb({code: -100, msg: '链接数据库失败'});
         } else {
           var db = client.db('smallfish');
-  
           var limitNum = parseInt(data.pageSize);
           var skipNum = data.page * data.pageSize - data.pageSize;
-  
+
           async.parallel([
             function (callback) {
               // 查询所有记录
@@ -139,7 +139,6 @@ const mobileModel = {
                 page: data.page,
               })
             }
-  
             // 关闭连接
             client.close();
           })
@@ -154,6 +153,7 @@ const mobileModel = {
    * @param {object} data 修改的用户信息 
    * @param {Function} cb 回调函数 
    */
+
   updateMobile(data,cb){
     MongoClient.connect(url, function(err, client) {
       let saveData = {
@@ -162,6 +162,7 @@ const mobileModel = {
         addprice: data.addprice,
         unaddprice: data.unaddprice
       };
+
       if (err) {
         console.log("连接数据库失败");
         cb({code: -100, msg: '数据库连接失败'});
@@ -178,15 +179,12 @@ const mobileModel = {
         },function(err){
             if(err)throw err;
             console.log("修改成功");
-
             cb(null);
         });
         client.close();
       }
    });
   },
-
-
 
   //删除手机
    delMobile(data,cb){
