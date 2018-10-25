@@ -1,0 +1,9 @@
+body{
+    background: url(/images/2.jpg) no-repeat center;
+}
+body h1{
+    text-align: center;
+    color: red;
+    margin-top: 50px;
+    font-size: 80px;
+}

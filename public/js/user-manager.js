@@ -23,13 +23,13 @@ $(function(){
     var ustr = location.href.split("0/")[1].split("-")[0];
       console.log(ustr);
     if(ustr == "user"){
-        $(".usercontrol").css("color","brown")
+        $(".usercontrol").css("color","#A19C97")
     }else if(ustr == "mobile"){
-        $(".mobilecontrol").css("color","brown")
+        $(".mobilecontrol").css("color","#A19C97")
     }else if(ustr == "brand"){
-      $(".logocontrol").css("color","brown")
+      $(".logocontrol").css("color","#A19C97")
     }else if(ustr.split("/")[0]== "users"){
-      $(".usercontrol").css("color","brown")
+      $(".usercontrol").css("color","#A19C97")
     }
     console.log(location.href)
 })
