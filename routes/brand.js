@@ -15,6 +15,7 @@ router.post('/add', upload.single('fileimg'), function(req, res) {
 
     console.log(req.file);
     console.log(req.body);
+    
     fs.readFile(req.file.path, function(err, data) {
         if (err) {
             console.log('读文件失败', err);
