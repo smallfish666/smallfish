@@ -63,9 +63,8 @@ router.get('/delete',function(req,res){
     res.redirect('/brand-manager.html');
   });
 
-  //品牌option
+  //品牌
   router.post('/addbranduser', function(req, res) {
-      console.log(1);
       MongoClient.connect(url, function(err, client) {
           if (err) {
               console.log('连接数据库失败')

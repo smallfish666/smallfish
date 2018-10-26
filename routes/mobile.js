@@ -62,7 +62,7 @@ router.get('/delete',function(req,res){
     res.redirect('/mobile-manager.html');
   });
 
-//品牌option
+//品牌
 router.post('/addbrand', function(req, res) {
     MongoClient.connect(url, function(err, client) {
         if (err) {

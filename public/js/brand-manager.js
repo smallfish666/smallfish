@@ -5,6 +5,17 @@ $(".cancleBrand").click(function(){
     $("#addbrandBox").fadeOut();
 });
 
+$("#sub").click(function(){
+    var abdval = $(".addbranduser").val();
+    var fival = $(".fileimg").val();
+    if(!( abdval && fival)){
+        alert("请正确填写表格哦!");
+        event.preventDefault();
+    }
+
+});
+
+
 //highlighting
 $(function(){
     var ustr = location.href.split("0/")[1].split("-")[0];

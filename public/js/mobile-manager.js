@@ -6,6 +6,18 @@ $(".cancleBrand").click(function(){
     $("#addBox").fadeOut();
 });
 
+// $("#sub").click(function(){
+//     var abuval = $(".adduser").val();
+//     var adbval = $(".addbrand").val();
+//     var uapval = $(".unaddprice").val();
+//     var apval = $(".addprice").val();
+//     if(!( abuval && adbval && uapval && apval)){
+//         alert("请正确填写表格哦!");
+//         event.preventDefault();
+//     }
+
+// });
+
 $(".updateMobileBtn").click(function(){
     $("#updateMobileBox").fadeIn();
     $(".adduser").val($(this).parents("tr").children(".auser").text().trim());
