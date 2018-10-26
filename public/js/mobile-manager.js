@@ -1,5 +1,6 @@
 $("#addMobileBtn").click(function(){
     $("#addBox").fadeIn();
+    //alert("表格不能为空");
 });
 $(".cancleBrand").click(function(){
     $("#addBox").fadeOut();
